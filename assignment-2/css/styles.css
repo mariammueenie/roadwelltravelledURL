@@ -1,0 +1,143 @@
+@charset "utf-8";
+
+html {
+    font: 120%/1.2 "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+/* STYLING TEXT */
+
+    /* styling the title */
+    h1 {
+        color: orange; /* sets header colour to orange*/
+        font-family: "Georgia", serif; /* use times new roman font */
+        text-align: left; /*aligns text to the left  */
+        font-weight: bold; /*makes text bold  */
+        border-left: 3px solid lightblue;/*gives header a solid lightblue border on the left  */
+        border-right: 3px solid lightblue;/*gives the header a solid lightblue border on the right */
+        padding-left: 5px; /*adds some space between text and border  */
+        padding-right: 5px; /*adds some space between text and right border  */
+        font-size: 3em; /*keep font size consistent in comparison to the rest of the text*/
+    }
+
+    /* styling the header that is 'above-the-fold */
+    h2.above-the-fold {
+        color: black; /*make font black*/
+        font-family: "Georgia"; /*make font courier new*/
+        font-weight: bolder; /*make title bold*/
+        font-stretch: extra-condensed;
+        font-size: 2.5em; /*keep font size consistent in comparison to the rest of the text*/
+    }
+
+    /* styling the top intro paragraph that is 'above-the-fold' */
+    p.above-the-fold {
+        color: black; /*make font black */
+        font-family: "Courier New", monospace; /*make font courier new */
+        font-weight: bold; /*make font bold */
+        font-stretch: condensed; /*condense font to make it look more similar to magazine */
+        font-size: 1.3em; /*keep font size consistent in comparison to the rest of the text */
+    }
+    /* first word of article styling */
+    .above-the-fold strong {
+        color: darkorange; /*make first words orange */
+        font-family: "Courier New", monospace; /*same font as rest of paragraph */
+        font-weight: bold; /*same font as rest of paragraph */
+        font-stretch: condensed; /*same font as rest of paragraph */
+        font-size: 1.3em; /*keep font size consistent in comparison to the rest of the text */
+    }
+
+    /* styling the article subtitles */
+    h2 {
+        color: black; /* make text black*/
+        font-family: "arial"; /*make font source sans pro*/
+        text-align: left; /*align font to the left*/
+        font-size: 1em; /*keep font size consistent in comparison to the rest of the text*/
+    }
+
+    /* styling the article content */
+    p {
+        color: black; /*make text black */
+        font-family: "Georgia", Serif; /*make font georgia */
+        text-align: left; /*align the text to the left */
+        font-size: 1em; /*keep font size consistent in comparison to the rest of the text*/
+    }
+
+/* FLEXBOX GRID SYSTEM SET UP BELOW */
+
+/* defines the overall container grid */
+#container {
+    display: grid;
+    grid-template-areas: 
+        "header" 
+        "main" 
+        "footer";
+    grid-gap: 1px;
+    align-self: center;
+}
+
+/* tells header and footer to remain full width */
+header {
+    grid-area: header;
+}
+footer {
+    grid-area: footer;
+}
+
+/* keeps the image centered at the top */
+.above-the-fold-container img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;    /* maintains aspect ratio of image, prevents stretching */
+  }
+
+/* LARGE SCREENS (1001px+) */
+@media (min-width: 1001px) {
+    main {
+      grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    }
+    .above-the-fold-container {
+        grid-column: 1 / span 2; /* take up 2 out of 3 columns */
+        column-count: 1;
+        justify-self: center; /* center it horizontally */
+      }
+    
+      .article-container {
+        grid-column: 1 / span 3; /* full width */
+        column-count: 3;
+        column-gap: 1px;
+      }
+    }
+    
+    /* MEDIUM SCREENS (501px - 1000px) */
+    @media (max-width: 1000px) and (min-width: 501px) {
+      main {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      }
+    
+      .above-the-fold-container {
+        grid-column: 1 / span 2; /* full width */
+        justify-self: center;
+      }
+    
+      .article-container {
+        grid-column: 1 / span 2;
+        column-count: 2;
+        column-gap: 1px;
+      }
+    }
+    
+    /* SMALL SCREENS (≤ 500px) */
+    @media (max-width: 500px) {
+      main {
+        display: block;
+      }
+    
+      .above-the-fold-container,
+      .article-container {
+        width: 100%;
+      }
+    
+      .article-container {
+        column-count: 1;
+      }
+    }
